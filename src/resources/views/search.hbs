@@ -1,0 +1,70 @@
+<div class="main-bot grid wide">
+  <div class="row">
+    <div class="content-bot xxl-9">
+      <div class="content-bot__header">
+        <h3 class="content-bot__header-text">Kết quả tìm kiếm: {{search}}</h3>
+      </div>
+
+      <div class="content-bot__flim row">
+        {{#each animation}}
+        <div class="col xxl-3 content-box-flim">
+          <div class="content-bot__flim-item">
+            <a href="flim/{{this.slug}}" class="content-bot__flim-link">
+              <img src="{{this.image}}" alt="" class="content-bot__flim-img">
+            </a>
+          </div>
+          <div class="content-bot__flim-box-name">
+            <a href="flim/{{this.slug}}" class="content-bot__flim-box-link">
+              <h3 class="content-bot__flim-name">{{this.name}}</h3>
+            </a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{#pagination current total size search}}
+      <nav aria-label="Page pavination" class="nav-pagination">
+        <ul class="pagination-list">
+          
+          
+          {{#unless startFromFirstPage}}
+          <li class="page-item">
+            <a class="page-link" href="?page=1{{#if search}}&name={{search}}{{/if}}" aria-label="Previous">
+              <i class="fa-solid fa-angles-left"></i>
+            </a>
+          </li>
+          {{/unless}}
+          {{#each pages}}
+          {{#if isCurrent}}
+         
+            <li class="page-item">
+              <a class="page-link" href="?page={{page}}{{#if search}}&name={{search}}{{/if}}">{{page}}</a>
+           </li>
+              
+          {{/if}}
+          {{#unless isCurrent}}
+            <li class="page-item">
+              <a class="page-link" href="?page={{page}}{{#if search}}&name={{search}}{{/if}}">{{page}}</a>
+              </li>
+          {{/unless}}
+          {{/each}}
+          {{#unless endAtLastPage}}
+            <li class="page-item">
+              <a class="page-link" href="?page={{total}}{{#if search}}&name={{search}}{{/if}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          {{/unless}}
+
+        </ul>
+      </nav>
+      {{/pagination}}
+
+    </div>
+    {{> main-right}}
+  </div>
+</div>
+
+<script>
+  
+</script>

@@ -1,0 +1,137 @@
+<div class="wrapper_category">
+  <div class="container_addCategory">
+      <div class="box_addCategory">
+        <input type="text" placeholder="Title" class="title-add">
+        <div>
+          <button class="btn btn-primary" id="add">Thêm</button>
+          <button class="btn btn-danger btn-detroy">Hủy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container_updateCategory">
+      <div class="box_addCategory">
+        <input type="text" placeholder="Title" class="title-update">
+        <div>
+          <button class="btn btn-primary" id="update">Thực hiện</button>
+          <button class="btn btn-danger btn-detroy">Hủy</button>
+        </div>
+      </div>
+    </div>
+  <button class="btn btn-primary btn-add">Thêm loại phim</button>
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">STT</th>
+          <th scope="col">Loại phim</th>
+          <th scope="col">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each categorys}}
+        <tr>
+          <td>
+            <div class="form-check">
+              <input type="checkbox" name="flimIds[]" value="{{this._id}}" class="form-check-input">
+            </div>
+          </td>
+          <th scope="row">{{sum @index 1}}</th>
+          <td style="width: 50%;">{{this.title}}</td>
+          <td style="display: flex;">
+          
+            <button class="btn btn-link update" name="{{this.title}}" value="{{this._id}}">Sửa</button>
+            <a href="/manager/deleteCategory/{{this._id}}" class="btn btn-link">Xóa</a>
+          </td>
+        </tr>
+        {{/each}}
+
+
+      </tbody>
+    </table>
+
+    
+  </div>
+
+  <script>
+    const update = document.querySelectorAll('.update')
+    const addCategory = document.querySelector('.container_addCategory')
+    const updateCategory = document.querySelector('.container_updateCategory')
+    const btn_add = document.querySelector('.btn-add')
+    const btn_detroy = document.querySelectorAll('.btn-detroy')
+    
+    function clearData() {
+      document.querySelector('.title-add').value = ''
+      document.querySelector('.title-update').value = ''
+      addCategory.style = "display: none"
+      updateCategory.style = "display: none"
+    }
+
+    btn_add.onclick = () => {
+      addCategory.style = "display: flex"
+    }
+    for(let i = 0; i < btn_detroy.length; i++) {
+
+      btn_detroy[i].onclick = () => {
+        clearData()
+      }
+    }
+
+    var id
+
+    for(let i = 0; i < update.length; i++) {
+
+    
+      update[i].onclick = (e) => {
+        updateCategory.style = "display: flex";
+        document.querySelector('.title-update').value = e.target.name
+        id = e.target.value
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#add').click(function() {
+          var title = document.querySelector('.title-add').value
+         
+          if(title) {
+            
+            $.ajax({
+              
+                type: 'POST',
+                url: '/manager/addCategory',
+                data: {title: title}, 
+                success: function(d){
+                  
+                  setTimeout(() => {
+                    location.reload()
+                  },500)
+                  
+                }
+            })
+          }
+          clearData()
+        })
+        
+        $('#update').click(function() {
+          var title = document.querySelector('.title-update').value
+         
+          if(title && id) {
+            
+            $.ajax({
+              
+                type: 'POST',
+                url: `/manager/updateCategory/${id}`,
+                data: {title: title}, 
+                success: function(d){
+                  id = null
+                  location.reload()
+                }
+            })
+          }
+          clearData()
+        })
+        
+    })   
+
+    
+  </script>

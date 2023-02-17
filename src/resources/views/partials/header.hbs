@@ -1,0 +1,42 @@
+
+<div class="header">
+	
+  <div class="header-container">
+    <div class="header-box">
+      <div class="logo">
+        <a href="/">
+        <img src="https://i0.wp.com/hhhkungfu.tv/wp-content/uploads/2021/12/Logo.jpg?fit=400%2C100&ssl=1" alt="">
+        </a>
+      </div>
+      <div class="header-search">
+        <form class="form-inline my-2 my-lg-0" action="/search">
+          <input id="search-flim" class="input-search" type="search" name="name" placeholder="Nhập tên phim cần tìm" aria-label="Search">
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <nav class="navbar">
+    <div class="nav-container">
+      <ul class="navbar-list">
+        {{#each categorys}}
+        <a href="/category/{{this._id}}">
+          <li class="navbar-item">
+            {{this.title}}
+          </li>
+        </a>
+        {{/each}}
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+  $('#search-flim').keypress(function(event) {
+  if (event.keyCode == 13 || event.which == 13) {
+          event.submit();       
+      }
+  });
+  
+</script>

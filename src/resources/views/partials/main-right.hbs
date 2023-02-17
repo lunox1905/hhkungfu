@@ -1,0 +1,27 @@
+
+<div class="content-bot-2 col xxl-3">
+	<div class="content-bot__header">
+		<h3 class="content-bot__header-text">Xem nhiều</h3>
+	</div>
+	<div class="content-bot__slider">
+		<img src="" alt="" class="content-bot__slider-img">
+	</div>
+	
+	<div class="content-bot__flim row">
+			{{#each mustView}}
+		<div class="col  flim_right">
+			<div class="content-right__flim-item">
+				<a href="/flim/{{this.slug}}" class="content-right__flim-link">
+					<img src="{{this.image}}" alt="" class="content-right__flim-img">						     	
+				</a>
+			</div>
+			<div class="content-right__flim-box-name">
+				<a href="/flim/{{this.slug}}" class="content-right__flim-box-link">
+					<h3 class="content-right__flim-name">{{this.name}}</h3>
+				</a>
+			</div>
+		</div>
+			{{/each}}
+	</div>
+	
+</div>

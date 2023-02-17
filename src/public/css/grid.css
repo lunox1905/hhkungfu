@@ -1,0 +1,206 @@
+.grid {
+	width: 100%;
+	display: block;
+	padding: 0;
+}
+
+.grid.wide {
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.col {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+@media only screen and (max-width: 442px) {
+
+    .col {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .s-0 {
+        display: none;
+    }
+
+    .s-6,
+    .s-12 {
+        display: block;
+    }
+
+    .s-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .s-12 {
+    	flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width: 425px) and (max-width: 568px){
+
+
+    .col {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .m-0 {
+        display: none;
+    }
+
+    .m-4,
+    .m-6
+    .m-12 {
+        display: block;
+    }
+
+    .m-10 {
+        max-width: calc(100% -72px);
+    }
+
+
+    .m-4 {
+        max-width: 33.33333%;
+    }
+
+    .m-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .m-12 {
+    	flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width: 569px) and (max-width: 880px){
+
+
+    .col {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .l-0 {
+        display: none;
+    }
+
+    .l-3,
+    .l-6
+    .l-12 {
+        display: block;
+    }
+
+
+    .l-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .l-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .l-12 {
+    	flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width: 881px) and (max-width: 1024px){
+
+
+    .col {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .xl-0 {
+        display: none;
+    }
+
+    .xl-4,
+    .xl-6,
+    .xl-12,
+    .xl-3 {
+        display: block;
+    }
+
+    .xl-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+
+    .xl-4 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+
+    .xl-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .xl-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .xl-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+
+
+    .col {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .xll-0 {
+        display: none;
+    }
+
+    .xxl-3,
+    .xxl-6,
+    .xxl-12 {
+        display: block;
+    }
+
+
+    .xxl-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .xxl-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .xxl-12 {
+    	flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .xxl-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+}

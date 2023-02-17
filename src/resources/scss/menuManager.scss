@@ -1,0 +1,25 @@
+.wrapper {
+
+    .header {
+        width: 270px;
+        
+        img {
+            width: 100%;
+        }
+    }
+    .container {
+        width: 270px;
+        background-color: rgb(39, 37, 37);
+        ul {
+            list-style: none;
+            li {
+                padding: 18px 30px;
+            }
+
+            li:hover {
+                background-color: rgb(27, 30, 33);
+            }
+        }
+    }
+}
+

@@ -1,0 +1,156 @@
+<form name="container-form" method="POST" action="manager/handle-manager" class="mt-4">
+  
+  <div class="mt-4 d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center">
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="check-all">
+      <lable class="form-check-lable" for="check-all">Chọn tất cả</lable>
+    </div>
+    <select class="form-control-sm select-option-manager" name="action">
+      <option value="null">Hành động</option>
+      <option value="delete">Xóa</option>
+    </select>
+    <button class="btn btn-primary btn-action btn-sm disabled">Thực hiện</button>
+``</div>
+    
+  <a href="/manager/createListFlim" class="btn btn-primary btn-create">Thêm phim mới</a>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">STT</th>
+        <th scope="col">Tên phim</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each animation}}
+      <tr>
+        <td>
+          <div class="form-check">
+            <input type="checkbox" name="flimIds[]" value="{{this._id}}" class="form-check-input">
+          </div>
+        </td>
+        <th scope="row">{{sum @index 1}}</th>
+        <td style="width: 50%;">{{this.name}}</td>
+        <td>
+          <a href="/manager/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+          <a href="" data-toggle="modal" data-id="{{this._id}}" data-name="{{this.slug}}"
+            data-target="#delete-nameFlim-modal" class="btn btn-link">Xóa</a>
+          <a href="/manager/{{this.slug}}/store" class="btn btn-link">Chỉnh sửa kho phim</a>
+        </td>
+      </tr>
+      {{/each}}
+
+
+    </tbody>
+  </table>
+</form>
+{{#pagination current total size search}}
+  <nav aria-label="Page navination" class="nav-pagination">
+    <ul class="pagination justify-content-center">
+      {{#unless startFromFirstPage}}
+      <li class="page-item">
+        <a class="page-link" href="/manager?page=1" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      {{/unless}}
+      {{#each pages}}
+      {{#if isCurrent}}
+      <li class="page-item"><a class="page-link" href="/manager?page={{page}}">{{page}}</a></li>
+      {{/if}}
+      {{#unless isCurrent}}
+      <li class="page-item"><a class="page-link" href="/manager?page={{page}}">{{page}}</a></li>
+      {{/unless}}
+      {{/each}}
+      {{#unless endAtLastPage}}
+      <li class="page-item">
+        <a class="page-link" href="/manager?page={{total}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+      {{/unless}}
+
+    </ul>
+  </nav>
+{{/pagination}}
+<!-- Modal -->
+<div class="modal fade" id="delete-nameFlim-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xóa phim</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Xóa bộ phim này?
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-delete" class="btn btn-danger">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<form name="delete-form" method="POST"></form>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var id;
+    var name;
+    var deleteForm = document.forms['delete-form']
+    var checkAll = $('#check-all')
+    var flimItemCheck = $('input[name="flimIds[]"]')
+    var btnAction = $('.btn-action')
+    var containerForm = document.forms['container-form']
+
+    $('#delete-nameFlim-modal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      id = button.data('id') // Extract info from data-* attributes
+      name = button.data('name')
+    })
+
+    var btnDelete = document.getElementById('btn-delete')
+    btnDelete.onclick = function () {
+      deleteForm.action = 'manager/' + name + '/' + id + '?_method=DELETE'
+      deleteForm.submit()
+    }
+
+
+    checkAll.change(function () {
+      var isCheckAll = $(this).prop('checked')
+      flimItemCheck.prop('checked', isCheckAll)
+      renderBtnCheck()
+    })
+
+    flimItemCheck.change(function () {
+      var isCheck = flimItemCheck.length === $('input[name="flimIds[]"]:checked').length
+      checkAll.prop('checked', isCheck)
+      renderBtnCheck()
+    })
+
+    btnAction.click(function (e) {
+      e.preventDefault()
+      var isSubmitAble = !$(this).hasClass('disabled')
+      if (isSubmitAble) {
+        containerForm.submit()
+      }
+    })
+
+    function renderBtnCheck() {
+      var countCheck = $('input[name="flimIds[]"]:checked').length
+      if (countCheck > 0) {
+        btnAction.removeClass('disabled')
+      } else {
+        btnAction.addClass('disabled')
+      }
+    }
+  })
+
+</script>

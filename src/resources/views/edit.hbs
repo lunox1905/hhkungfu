@@ -1,0 +1,55 @@
+<div>
+    <h3>Update flim</h3>
+    <form method="POST" action="update?_method=PUT">
+
+        <div class="form-list">
+            <div class="form-group">
+                <label for="">Tên phim</label>
+                <input type="text" class="form-control" id="" name="name" placeholder="" value="{{flim.name}}">
+            </div>
+            
+            <div class="form-group">
+                <label for="">Link ảnh</label>
+                <input type="text" class="form-control" id="" name="image" placeholder="" value="{{flim.image}}">
+            </div>
+        </div>
+        <div class="form-list">
+            <div class="form-group">
+                <label for="">Lịch chiếu</label>
+                <select name="showTime" id="" value="{{flim.showtime}}">
+                    <option value="2">Thứ 2</option>
+                    <option value="3">Thứ 3</option>
+                    <option value="4">Thứ 4</option>
+                    <option value="5">Thứ 5</option>
+                    <option value="6">Thứ 6</option>
+                    <option value="7">Thứ 7</option>
+                    <option value="8">Chủ nhật</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Thời lượng</label>
+                <input type="text" class="form-control" id="" name="time" placeholder="" value="{{flim.time}}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label for="">Thể loại</label>
+            <div class="form-box">
+
+            {{{showCheckCategory categorys flim.categorys}}}
+            </div>
+        </div>
+        <div class="form-item">
+            <label for="">Nội dung</label>
+            <textarea type="text" id="" name="content" placeholder="">
+                {{flim.content}}
+            </textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+<script>
+    const check = document.querySelectorAll('.check-category')
+    const f = `{{flim.categorys}}`
+    console.log(f)
+</script>

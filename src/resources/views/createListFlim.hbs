@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="/css/manager.css">
+<div>
+    <h3>Thêm flim</h3>
+    <form method="POST" action="storeListFlim">
+        <div class="form-list">
+            <div class="form-group">
+                <label for="">Tên phim</label>
+                <input type="text" class="form-control" id="" name="name" placeholder="">
+            </div>
+            
+            <div class="form-group">
+                <label for="">Link ảnh</label>
+                <input type="text" class="form-control" id="" name="image" placeholder="">
+            </div>
+        </div>
+        <div class="form-list">
+            <div class="form-group">
+                <label for="">Lịch chiếu</label>
+                <select name="showTime" id="">
+                    <option value="2">Thứ 2</option>
+                    <option value="3">Thứ 3</option>
+                    <option value="4">Thứ 4</option>
+                    <option value="5">Thứ 5</option>
+                    <option value="6">Thứ 6</option>
+                    <option value="7">Thứ 7</option>
+                    <option value="8">Chủ nhật</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Thời lượng</label>
+                <input type="text" class="form-control" id="" name="time" placeholder="">
+            </div>
+        </div>
+        <div class="form-item">
+            <label for="">Thể loại</label>
+            <div class="form-box">
+            {{#each categorys}}
+                
+                <input type="checkbox" value="{{this._id}}" class="check-category" name="categorys">
+                <span>{{this.title}}</span>
+            {{/each}}
+            
+            </div>
+        </div>
+        <div class="form-item">
+            <label for="">Nội dung</label>
+            <textarea type="text" id="" name="content" placeholder="">
+            </textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-add">Thêm phim mới</button>
+    </form>
+    
+</div>

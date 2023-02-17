@@ -1,0 +1,54 @@
+<div class="main-bot">
+    <div class="row">
+        <div class="container-optionFlim col xxl-9">
+            <div class="box-watchFlim">
+                <iframe  id="video" width="810" height="456" src="{{store.videoLink}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="box-contentFlim-watch">
+                <h2 class="box-contentFlim-title" style="color: aliceblue;">{{flim.name}} Tập {{store.ep}}</h2>
+            </div>
+            <div class="container-ep">
+                <div class="box-text">
+                    <i class="fas fa-indent">  FULL HD</i>
+                </div>
+                <div class="box-ep">
+                {{#each stores}}
+                    <a class="ep-link" href="/flim/{{this.name}}/{{this.slug}}">
+                        <button class="btn-ep">{{this.ep}}</button>
+                        
+                    </a>
+                {{/each}}
+                
+                </div>
+
+                <div class="content-flim">
+                    <div class="content-bot__header">
+                        <h3 class="content-bot__header-text">Nội dung</h3>
+                        <p class="content-text">{{flim.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {{> main-right}}
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#btn').click(function() {
+            var view = parseInt(`{{view}}`) + 1
+            console.log(view)
+            $.ajax({
+                type: 'POST',
+                url: '/handle',
+                data: {name: `{{store.name}}`,view: view}, 
+                success: function(d){
+                    console.log('d')
+                }
+            })
+        })
+    })   
+    
+</script>

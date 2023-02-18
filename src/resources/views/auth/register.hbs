@@ -50,8 +50,7 @@
             errorSelector: '.form-message',
             rules: [
                 Validator.isRequired("#username", 'Vui lòng nhập username'),
-                Validator.isRequired("#email", 'Vui lòng nhập email'),
-                Validator.isEmail('#email', 'Email không hợp lệ'),
+                
                 Validator.minLength("#password", 6, 'Password phải lớn hơn 5 ký tự'),
                 Validator.isConfirmed('#repassword', function(){
                     return document.querySelector('#loginform #password').value;
